@@ -1,12 +1,26 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addUser } from "./utils/userSlice";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("piccolo2004@gmail.com");
+  const [password, setPassword] = useState("Piccolo@1234");
 
-  const handleLogin = () => {
-    // Logic for your Node.js backend call goes here
-    console.log("Logging in with:", email, password);
+  const dispatch = useDispatch()
+
+  const handleLogin = async () => {
+    try {
+      const res = await axios.post("http://localhost:7000/login",{
+        email : email,
+        password : password
+      },{withCredentials : true})
+      console.log(res.data)
+      dispatch(addUser(res.data))
+    } catch(err){
+      console.log("Error in login " + err.message)
+    }
+    
   };
 
   return (
