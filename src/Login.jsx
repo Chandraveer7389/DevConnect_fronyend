@@ -1,9 +1,58 @@
-import React from 'react'
+import React, { useState } from "react";
 
 const Login = () => {
-  return (
-    <div>Login</div>
-  )
-}
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-export default Login
+  const handleLogin = () => {
+    // Logic for your Node.js backend call goes here
+    console.log("Logging in with:", email, password);
+  };
+
+  return (
+    <div className="flex justify-center mt-20">
+      <div className="card bg-base-300 w-96 shadow-xl border border-base-content/10">
+        <div className="card-body">
+          <h2 className="card-title text-2xl font-bold mb-4">Login</h2>
+
+          <label className="form-control w-full">
+            <div className="label">
+              <span className="label-text">Email ID</span>
+            </div>
+            <input
+              type="email"
+              className="input input-bordered w-full"
+              value={email}
+              placeholder="Enter your email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </label>
+
+          <label className="form-control w-full mt-4">
+            <div className="label">
+              <span className="label-text">Password</span>
+            </div>
+            <input
+              type="password"
+              className="input input-bordered w-full"
+              value={password}
+              placeholder="Enter password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
+
+          <div className="card-actions justify-center mt-6">
+            <button 
+              className="btn btn-primary w-full" 
+              onClick={handleLogin}
+            >
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
