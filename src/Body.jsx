@@ -13,7 +13,7 @@ const Body = () => {
     try{
       const res = await axios.get("http://localhost:7000/profile/view",{withCredentials : true})
       dispatch(addUser(res.data))
-      console.log(res.data)
+      //console.log(res.data)
 
     }catch (err) {
       navigate("/login")
